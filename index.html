@@ -3,6 +3,7 @@
 
 <head>
   <title>RECN - Royal Enfield club Noida</title>
+  <link rel="RECN LOGO" href="{{url_for('static', filename='Logo.jpg')}}">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,6 +13,9 @@
   <script src="jquery-3.6.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"> </script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
   .navbar-brand {
@@ -255,9 +259,9 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a
-                  href="Merch.html">Merchandise</a>
-              </li>
+              <!--<li><a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeZ2o01j_4fwrStk8ry7ak5KUCW8igiQpV4F4T1R3exbkKU2g/viewform?usp=sf_link">Merchandise</a>
+              </li>-->
               <li><a href="RTS.html">RTS</a></li>
               <li><a href="#">Media</a></li>
             </ul>
@@ -268,66 +272,22 @@
     </div>
   </nav>
 
-<div class="container-fluid">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
+<div class="mySlides w3-display-container w3-center">
+    <img src="static/1-220.jpg" style="width:100%">
+</div>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+<div class="mySlides w3-display-container w3-center">
+    <img src="static/1-221.jpg" style="width:100%">
+</div>
 
-      <div class="item active">
-        <img class="craimg" src="static/img1.jpg" alt="logo" width="1100" height="600">
-        <div class="carousel-caption">
-        </div>
-      </div>
+<div class="mySlides w3-display-container w3-center">
+    <img src="static/1-224.jpg" style="width:100%">
+</div>
 
-      <div class="item">
-        <img class="craimg" src="static/Cara1.jpg" alt="logo" width="1100" height="600">
-        <div class="carousel-caption">
-        </div>
-      </div>
+<div class="mySlides w3-display-container w3-center">
+    <img src="static/1-227.jpg" style="width:100%">
+</div>
 
-
-
-
-      <div class="item">
-        <img class="craimg" src="static/Cara2.jpg" alt="logo" width="1100" height="600">
-        <div class="carousel-caption">
-        </div>
-      </div>
-
-     
-
-      <div class="item">
-        <img class="craimg" src="static/Cara4.jpg" alt="logo" width="1100" height="600">
-        <div class="carousel-caption">
-        </div>
-      </div>
-
-      <div class="item">
-        <img class="craimg" src="static/imgnew2.jpg" alt="logo" width="1100" height="600">
-        <div class="carousel-caption">
-        </div>
-      </div>
-    </div>
-
-    <!-- Left and right controls 
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>-->
-  </div>
-	</div>
   <!-- Container (The Band Section) -->
   <div id="band" class="container text-center">
     <div class="row">
@@ -618,6 +578,40 @@
       }
 
     })
+	
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}	
   </script>
 
 </body>
