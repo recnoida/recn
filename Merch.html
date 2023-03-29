@@ -24,32 +24,40 @@
 	<body>
 
 	<!-- Navbar -->
-	<div class="w3-top">
-	  <div class="w3-bar w3-black w3-card">
-		<a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-		<a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-		<a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BAND</a>
-		<a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR</a>
-		<a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-		<div class="w3-dropdown-hover w3-hide-small">
-		  <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
-		  <div class="w3-dropdown-content w3-bar-block w3-card-4">
-			<a href="#" class="w3-bar-item w3-button">Merchandise</a>
-			<a href="#" class="w3-bar-item w3-button">Extras</a>
-			<a href="#" class="w3-bar-item w3-button">Media</a>
-		  </div>
-		</div>
-		<a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-	  </div>
-	</div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand"></span>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#myPage">HOME</a></li>
+          <li><a href="#band">COMMUNITY</a></li>
+          <li><a href="#tour">RIDES 2022-2023</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <!--<li><a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeZ2o01j_4fwrStk8ry7ak5KUCW8igiQpV4F4T1R3exbkKU2g/viewform?usp=sf_link">Merchandise</a>
+              </li>-->
+              <li><a href="RTS.html">RTS</a></li>
+              <li><a href="#">Media</a></li>
+            </ul>
+          </li>
+          <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-	<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-	<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-	  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-	  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-	  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-	  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
-	</div>
+	
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width:2000px;margin-top:46px">
@@ -72,7 +80,7 @@
 		</div>
 
 	  <!-- The Band Section -->
-	  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+	  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:98%" id="band">
 		<h2 class="w3-wide">RECN NOIDA</h2>
 		<p class="w3-opacity"><i>We love to ride!</i></p>
 		<p class="w3-justify">Welcome to the Royal Enfield Club Noida, a community of passionate riders who share a love for Royal Enfield motorcycles. Established in 2014, our club is dedicated to promoting safe and responsible riding while providing a platform for riders of all skill levels to connect and enjoy the thrill of the open road together.</p>
@@ -114,50 +122,117 @@
 	  </div>
 
 	  <!-- The Tour Section -->
-	  <div class="w3-black" id="tour">
-		<div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-		  <h2 class="w3-wide w3-center">TOUR DATES</h2>
-		  <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p><br>
+	  <div id="tour" class="bg-1">
+    <div class="container">
+      <h3 class="text-center">RIDES UPDATES</h3>
+      <p class="text-center">Below is the ride that was done by RECN in 2023.<br> </p>
+      <ul class="list-group">
+        <li class="list-group-item">January 2023 - December 2023<span class="badge">2</span></li>
+        <br>
 
-		  <ul class="w3-ul w3-border w3-white w3-text-grey">
-			<li class="w3-padding">September <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-			<li class="w3-padding">October <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-			<li class="w3-padding">November <span class="w3-badge w3-right w3-margin-right">3</span></li>
-		  </ul>
+		<div class="row text-center">
+		<div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/SN/SN17.jpg" alt="SN" width="400" height="250">
+              <p><strong>Snow Ride</strong></p>
+              <p></p>
+              <input type='button' value='Winter is Here!!!' class="btn"
+                onclick="document.location.href='SN.html';" />
 
-		  <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-			<div class="w3-third w3-margin-bottom">
-			  <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity">
-			  <div class="w3-container w3-white">
-				<p><b>New York</b></p>
-				<p class="w3-opacity">Fri 27 Nov 2016</p>
-				<p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-				<button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-			  </div>
-			</div>
-			<div class="w3-third w3-margin-bottom">
-			  <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity">
-			  <div class="w3-container w3-white">
-				<p><b>Paris</b></p>
-				<p class="w3-opacity">Sat 28 Nov 2016</p>
-				<p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-				<button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-			  </div>
-			</div>
-			<div class="w3-third w3-margin-bottom">
-			  <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
-			  <div class="w3-container w3-white">
-				<p><b>San Francisco</b></p>
-				<p class="w3-opacity">Sun 29 Nov 2016</p>
-				<p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-				<button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
+            </div>
+          </div>
+ 
+	      
+        
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/BR1/BR7.jpg" alt="Some Image goes here" width="400" height="300">
+              <p><strong>BreakFast Ride </br>(Jan 28)
+                </strong></p>
+              <p></p>
+              <input type='button' value='Chai Pe charcha' class="btn"
+                onclick="document.location.href='BR1.html';" />
+            </div>
+          </div>
 
-	  <!-- Ticket Modal -->
+
+          
+          <!--<div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/img1.jpg" alt="Nellong" width="400" height="250">
+              <p><strong>Nelong</strong></p>
+              <p></p>
+              <input type='button' value='View nelong through the Eyes of RECN' class="btn"
+                onclick="document.location.href='Nelong.html';" />
+
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/Kasar/15PH.jpeg" alt="Nellong" width="400" height="250">
+              <p><strong>15PH</strong></p>
+              <p></p>
+              <input type='button' value='The 15 piston Heads' class="btn"
+                onclick="document.location.href='15PH.html';" />
+
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/GT/IMG_1.jpg" alt="GT" width="400" height="250">
+              <p><strong>GT</strong></p>
+              <p></p>
+              <input type='button' value='Time For Some Challenge' class="btn"
+                onclick="document.location.href='GT.html';" />
+
+            </div>
+          </div>-->
+
+
+
+        </div>
+    </div>
+
+    <!--<li class="list-group-item">May 2022 <span class="badge">2</span></li>
+        <br>
+        <div class="row text-center">
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="static/BreakFast.jpg" alt="BreakFast" width="400" height="300">
+              <p><strong>Breakfast Ride</strong></p>
+              <p>1 may</p>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Register Here</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="newyork.jpg" alt="Some Image goes here" width="400" height="300">
+              <p><strong>Natures Connect</strong></p>
+              <p>May 14-16</p>
+              <button class="btn" data-toggle="modal" data-target="#myModal">Register Here</button>
+            </div>
+          </div>
+        </div>
+        <li class="list-group-item">June 2022 <span class="badge">1</span></li>
+      </ul>
+
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <div class="thumbnail">
+            <img src="paris.jpg" alt="Some Image goes here" width="400" height="300">
+            <p><strong>Siachen - The war land</strong></p>
+            <p>June 16-30</p>
+            <button class="btn" data-toggle="modal" data-target="#myModal">Register Here</button>
+          </div>
+        </div>
+      </div>-->
+  </div>
+
+  </div>
+
+	  <!-- Ticket Modal 
 	  <div id="ticketModal" class="w3-modal">
 		<div class="w3-modal-content w3-animate-top w3-card-4">
 		  <header class="w3-container w3-teal w3-center w3-padding-32"> 
@@ -175,7 +250,7 @@
 			<p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
 		  </div>
 		</div>
-	  </div>
+	  </div>-->
 
 	  <!-- The Contact Section -->
 	  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
