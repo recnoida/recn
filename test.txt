@@ -1,1 +1,10 @@
-more tests
+To Hiring Team, 
+I am writing to you regarding the recent job opening for Advisory Management Pyhton+SQL. I am very interested in working for KPMG.
+I believe that I meet a majority of the required qualifications and skills and that my experience in this field will make me a strong candidate for the position.
+I believe in being professional in the workspace and have no problem in meeting the tight deadlines as and when required of me. I believe that with my skills in Python , SQL ,Team management, Flask and other technologies can be a valuable asset to your company.
+I have enclosed with this letter my resume which I hope is satisfactory and meets all your expectations. My resume contains a more in-depth detail about my education and previous work experience. You will find from the resume that I am capable of handling this task having exposure from working in both big scale organization and an organisation in its early stages from which I have gained knowledge on both delivering the project on time and with great quality keeping stakeholders in mind.
+I look forward to your call for a personal interview with regards to this position.
+Thank you in advance for this opportunity.
+Warm regards,
+Abhishek Sharma
+
