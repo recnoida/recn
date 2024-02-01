@@ -1,1 +1,0 @@
-{'Data_Update_For': 12, 'Name_of_Riders': ['Karthik BS', 'Manish Sinha', 'Rakshit Sharma', 'Manish Walia', 'Rajiv Kandpal', 'Sachin Sharma', 'Pradeep Jeremiah', 'Divyanshu Dhuper', 'Ayush Srivastav', 'Veeraj Kumar', 'Vidit Sinha', 'Utkarsh Thakkar']}
