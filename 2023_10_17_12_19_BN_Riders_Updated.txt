@@ -1,1 +1,0 @@
-{'Data_Update_For': 12, 'Name_of_Riders': ['Pankaj Poptani', 'Abhishek Sharma', 'Karthik BS', 'Ishaan Sharma', 'Rajiv Ranjan', 'Manish Walia', 'Ravinder Singh', 'Nitin Bhatt', 'Tanveer Ahuja', 'Shivank Tyagi', 'Rakesh Tiwari', 'Ankur Singh']}
