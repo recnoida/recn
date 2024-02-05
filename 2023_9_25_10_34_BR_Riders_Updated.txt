@@ -1,1 +1,0 @@
-{'Data_Update_For': 16, 'Name_of_Riders': ['Pankaj Poptani', 'Karthik BS', 'Rakesh Parihar (Kevin)', 'Manish Sinha', 'Manish Walia', 'Devjit Acharya', 'Rajiv Kandpal', 'Sanjiv Rastogi', 'Sachin Sharma', 'Arjun Tandon', 'Tanveer Ahuja', 'Sanchit Sehgal', 'Saurav Dutta', 'Shivank Tyagi', 'Akhilesh Sharma', 'Siddharth Mishra']}
