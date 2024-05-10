@@ -1,0 +1,1 @@
+{'Data_Update_For': 19, 'Name_of_Riders': ['Sarvesh Singh', 'Pankaj Poptani', 'Rakshit Sharma', 'Harvir Singh', 'Prashant Gopal', 'Ishaan Sharma', 'Ajay Rajpali', 'Ankur Singh', 'Sanjiv Rastogi', 'Shantanu Das', 'Gautam Modh', 'Abhilash Bhati', 'Vratkunj Verma', 'Vipul Mahajan', 'Anuroop Pande', 'Nitin Bhatt', 'Sharad Bhatia', 'Sajal Agarwal', 'Prateek Jha']}
