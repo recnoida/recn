@@ -1,1 +1,0 @@
-{'Name_of_Riders': ['Abhishek Sharma-2', 'Ranjeet Singh', 'Archit Anand']}
