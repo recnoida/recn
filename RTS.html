@@ -1048,6 +1048,15 @@ body {
         }
       }
     });
+    $(document).ready(function() {
+    $('tr').each(function() {
+        var secondTdValue = parseInt($(this).find('td:nth-child(10)').text());
+        if (secondTdValue > 36) {
+            $(this).css('background-color', '#00AB66');
+		$(this).css('color', 'white');
+        }
+    });
+});
 
   </script>
 
