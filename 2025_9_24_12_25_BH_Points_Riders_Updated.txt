@@ -1,0 +1,1 @@
+{'Data_Update_For': 18, 'Name_of_Riders': ['Sarvesh Singh', 'Anuroop Pande', 'Amit Rana', 'Hitesh Kumar', 'Rajiv Ranjan', 'Abhishek Sharma (MOY-2023)', 'Ishaan Sharma', 'Vratkunj Verma', 'Rajiv Kandpal', 'Kaustubh Rawat', 'Tarun Kapoor', 'Devjit Acharya', 'Rakshit Sharma (ROY-2022;MOY-2023,24)', 'Vivek Nahata', 'Rachit Garg', 'Rohan Singh', 'Ashok Biswal', 'Abhilash Bhati']}
