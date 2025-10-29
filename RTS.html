@@ -1181,6 +1181,17 @@ body {
 		$(this).css('color', 'white');
         }
     });
+    $("td").each(function() {
+    if (($(this).text().trim() === "Rohan Singh") || ($(this).text().trim() === "Ashok Biswal")){ 
+        $(this).closest("tr").css('background-color', '#00AB66');
+         $(this).closest("tr").css('color', 'white');
+    }
+    });
+    $("td").each(function() {
+    if (($(this).text().trim() === "Rakshit Sharma (ROY-2022;MOY-2023,24)") || ($(this).text().trim() === "Pankaj Poptani (ROY-2023,24)")  || ($(this).text().trim() === "Abhishek Sharma (MOY-2023)")){
+         $(this).css('font-weight', 'bold');
+    }
+    });
 });
     
     </script>
