@@ -1,0 +1,1 @@
+{'Data_Update_For': 16, 'Name_of_Riders': ['Sarvesh Singh', 'Vratkunjh Verma', 'Amit Dimri', 'Hitesh Kumar', 'Manish Walia', 'Rohit Chaku', 'Ajay Rajpali', 'Saurav Paul', 'Shivank Tyagi(MOY-2025)', 'Nikhar Mathur', 'Harvir Singh', 'Sanjeev Rastogi', 'Prateek Srivastava', 'Jaspreet Singh', 'Subodh Singh', 'Sarabjeet Singh']}
