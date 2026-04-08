@@ -1053,7 +1053,7 @@ body {
     $(document).ready(function() {
     $('tr').each(function() {
         var secondTdValue = parseInt($(this).find('td:nth-child(10)').text());
-        if (secondTdValue > 35) {
+        if (secondTdValue > 39) {
             $(this).css('background-color', '#00AB66');
 		$(this).css('color', 'white');
         }
@@ -1065,7 +1065,7 @@ body {
     }
     });
     $("td").each(function() {
-    if (($(this).text().trim() === "Rakshit Sharma (ROY-2022;MOY-2023,24)") || ($(this).text().trim() === "Pankaj Poptani (ROY-2023,24)")  || ($(this).text().trim() === "Abhishek Sharma (MOY-2023)")){
+    if (($(this).text().trim() === "") || ($(this).text().trim() === "")  || ($(this).text().trim() === "")){
          $(this).css('font-weight', 'bold');
     }
     });
