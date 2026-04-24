@@ -26,13 +26,7 @@
     max-width: 100%;
   }
 
-  button {
-    padding: 6px 10px;
-    margin-left: 10px;
-    cursor: pointer;
-  }
-
-  /* ✅ Mobile optimization wrapper */
+  /* Table wrapper */
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -52,11 +46,13 @@
     font-size: 14px;
   }
 
+  /* ✅ Header font reduced */
   th {
     background: #333;
     position: sticky;
     top: 0;
     z-index: 2;
+    font-size: 12px;
   }
 
   tr:nth-child(even) { background: #222; }
@@ -67,11 +63,9 @@
   .yellow { background: #ffc107 !important; color: black; }
   .red { background: #dc3545 !important; }
 
-  /* 📱 Mobile improvements */
+  /* 📱 Mobile */
   @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
+    .container { padding: 10px; }
 
     th, td {
       padding: 6px;
@@ -81,11 +75,6 @@
     input {
       width: 100%;
       margin-bottom: 8px;
-    }
-
-    button {
-      width: 100%;
-      margin: 5px 0 0 0;
     }
   }
 </style>
@@ -99,7 +88,6 @@
 
   <div class="controls">
     <input type="text" id="searchInput" placeholder="Search...">
-    <button onclick="downloadCSV()">Download CSV</button>
   </div>
 
   <div class="table-wrapper">
@@ -114,8 +102,6 @@
 <script>
 
 const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952&tq=select A,B,D,H,J,N,R,T,W,X";
-
-let tableData = [];
 
 fetch(url)
 .then(res => res.text())
@@ -183,34 +169,19 @@ fetch(url)
     });
 
     bodyHTML += "</tr>";
-
-    tableData.push(row.data);
   });
 
   document.getElementById("sheetData").innerHTML = bodyHTML;
 
 });
 
-// Search
+// Search filter
 document.getElementById("searchInput").addEventListener("keyup", function() {
   let filter = this.value.toLowerCase();
   document.querySelectorAll("#sheetData tr").forEach(row => {
     row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
   });
 });
-
-// CSV download
-function downloadCSV() {
-  let csv = "";
-  tableData.forEach(row => csv += row.join(",") + "\n");
-
-  let blob = new Blob([csv], { type: "text/csv" });
-  let a = document.createElement("a");
-
-  a.href = URL.createObjectURL(blob);
-  a.download = "recn_rts_2026.csv";
-  a.click();
-}
 
 </script>
 
