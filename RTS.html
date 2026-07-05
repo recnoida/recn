@@ -46,7 +46,7 @@
     font-size: 14px;
   }
 
-  /* Header font reduced */
+  /* ✅ Header font reduced */
   th {
     background: #333;
     position: sticky;
@@ -63,7 +63,7 @@
   .yellow { background: #ffc107 !important; color: black; }
   .red { background: #dc3545 !important; }
 
-  /* Mobile */
+  /* 📱 Mobile */
   @media (max-width: 768px) {
     .container { padding: 10px; }
 
@@ -101,17 +101,43 @@
 
 <script>
 
-const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952&tq=select A,B,D,I,K,O,U,X,AB,AC";
+// Fetch the complete sheet
+const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
+
+
+
+// Column headers to display
+const requiredHeaders = [
+  "S.No",
+  "Name",
+  "RECN ONE-UP (1)",
+  "SPORTS CIRCLE(2)",
+  "EVENT (4)",
+  "BREAKFAST RIDE (5)",
+  "BROTHERHOOD NIGHT (7)",
+  "EXPEDITION",
+  "TOTAL"
+];
 
 fetch(url)
 .then(res => res.text())
 .then(rep => {
 
   const json = JSON.parse(rep.substring(47).slice(0, -2));
-  const cols = json.table.cols;
+
+  const allCols = json.table.cols;
   const rows = json.table.rows;
 
-  let totalColIndex = cols.findIndex(c =>
+  // Find column indexes by header names
+  const selectedIndexes = requiredHeaders
+    .map(header => allCols.findIndex(c => (c.label || "").trim() === header))
+    .filter(index => index !== -1);
+
+  // Selected columns only
+  const cols = selectedIndexes.map(i => allCols[i]);
+
+  // Find Total column in original sheet
+  let totalColIndex = allCols.findIndex(c =>
     (c.label || "").toLowerCase().trim() === "total"
   );
 
@@ -127,11 +153,12 @@ fetch(url)
       totalValue = parseFloat(tCell ? (tCell.v || tCell.f) : 0) || 0;
     }
 
-    for (let i = 0; i < cols.length; i++) {
+    // Read only selected columns
+    selectedIndexes.forEach(i => {
       let cell = r.c[i];
       let value = cell ? (cell.f || cell.v || "") : "";
       rowArr.push(value);
-    }
+    });
 
     tableRows.push({
       data: rowArr,
