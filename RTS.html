@@ -1,121 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-  body {
-    font-family: Arial;
-    background: #111;
-    color: white;
-    margin: 0;
-  }
-
-  .container {
-    padding: 20px;
-    overflow-x: auto;
-  }
-
-  h2 { margin-bottom: 10px; }
-
-  .controls { margin-bottom: 10px; }
-
-  input {
-    padding: 6px;
-    width: 200px;
-    max-width: 100%;
-  }
-
-  /* Table wrapper */
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  table {
-    border-collapse: collapse;
-    min-width: 900px;
-    width: 100%;
-  }
-
-  th, td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #444;
-    white-space: nowrap;
-    font-size: 14px;
-  }
-
-  /* ✅ Header font reduced */
-  th {
-    background: #333;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    font-size: 12px;
-  }
-
-  tr:nth-child(even) { background: #222; }
-  tr:nth-child(odd) { background: #1a1a1a; }
-  tr:hover { background: #444; }
-
-  .green { background: #198754 !important; }
-  .yellow { background: #ffc107 !important; color: black; }
-  .red { background: #dc3545 !important; }
-
-  /* 📱 Mobile */
-  @media (max-width: 768px) {
-    .container { padding: 10px; }
-
-    th, td {
-      padding: 6px;
-      font-size: 12px;
-    }
-
-    input {
-      width: 100%;
-      margin-bottom: 8px;
-    }
-  }
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <h2>RECN RTS 2026</h2>
-
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search...">
-  </div>
-
-  <div class="table-wrapper">
-    <table>
-      <thead id="tableHead"></thead>
-      <tbody id="sheetData"></tbody>
-    </table>
-  </div>
-
-</div>
-
-<script>
-
-// Fetch the complete sheet
-const url = "https://docs.google.com/spreadsheets/d/1y_lLPQUS1jfK-lxiUmiMEsdAC2dXjK9T/edit?gid=310771952#gid=310771952";
+const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
 
 
 
 // Column headers to display
 const requiredHeaders = [
   //"S.No",
-  "Name",
-  "SPORTS CIRCLE(2)",
-  "MEN-METAL-MADNESS(3)",
-  "EVENT (4)",const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
-
-// Column headers to display
-const requiredHeaders = [
   "Name",
   "SPORTS CIRCLE(2)",
   "MEN-METAL-MADNESS(3)",
@@ -137,15 +26,14 @@ fetch(url)
 
   // Find column indexes by header names
   const selectedIndexes = requiredHeaders
-    .map(header =>
-      allCols.findIndex(c => (c.label || "").trim() === header)
-    )
+    .map(header => allCols.findIndex(c => (c.label || "").trim() === header))
     .filter(index => index !== -1);
 
+  // Selected columns only
   const cols = selectedIndexes.map(i => allCols[i]);
 
-  // Find Total column
-  const totalColIndex = allCols.findIndex(c =>
+  // Find Total column in original sheet
+  let totalColIndex = allCols.findIndex(c =>
     (c.label || "").toLowerCase().trim() === "total"
   );
 
@@ -158,13 +46,10 @@ fetch(url)
 
     if (totalColIndex !== -1) {
       let tCell = r.c[totalColIndex];
-
-      totalValue = parseFloat(
-        tCell ? (tCell.v || tCell.f) : 0
-      ) || 0;
+      totalValue = parseFloat(tCell ? (tCell.v || tCell.f) : 0) || 0;
     }
 
-    // Read selected columns
+    // Read only selected columns
     selectedIndexes.forEach(i => {
       let cell = r.c[i];
       let value = cell ? (cell.f || cell.v || "") : "";
@@ -177,19 +62,14 @@ fetch(url)
     });
   });
 
-  // Sort highest TOTAL to lowest
+  // Sort high to low
   tableRows.sort((a, b) => b.total - a.total);
 
   // Header
   let headHTML = "<tr>";
-
-  // Rank column
-  headHTML += `<th>RANK</th>`;
-
   cols.forEach(col => {
     headHTML += `<th>${col.label || ""}</th>`;
   });
-
   headHTML += "</tr>";
 
   document.getElementById("tableHead").innerHTML = headHTML;
@@ -197,24 +77,15 @@ fetch(url)
   // Rows
   let bodyHTML = "";
 
-  tableRows.forEach((row, index) => {
+  tableRows.forEach(row => {
 
     let rowClass = "";
 
-    if (row.total === 0) {
-      rowClass = "red";
-    } 
-    else if (row.total >= 40) {
-      rowClass = "green";
-    } 
-    else if (row.total >= 30) {
-      rowClass = "yellow";
-    }
+    if (row.total === 0) rowClass = "red";
+    else if (row.total >= 40) rowClass = "green";
+    else if (row.total >= 30) rowClass = "yellow";
 
     bodyHTML += `<tr class="${rowClass}">`;
-
-    // Automatically generated rank
-    bodyHTML += `<td>${index + 1}</td>`;
 
     row.data.forEach(val => {
       bodyHTML += `<td>${val}</td>`;
@@ -229,21 +100,10 @@ fetch(url)
 
 // Search filter
 document.getElementById("searchInput").addEventListener("keyup", function() {
-
   let filter = this.value.toLowerCase();
-
   document.querySelectorAll("#sheetData tr").forEach(row => {
-
-    row.style.display =
-      row.innerText.toLowerCase().includes(filter)
-        ? ""
-        : "none";
-
+    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
   });
-
 });
 
 </script>
-
-</body>
-</html>
