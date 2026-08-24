@@ -100,9 +100,21 @@
 </div>
 
 <script>
-const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
 
-// Column headers to display (we’ll add S.No dynamically)
+// Fetch the complete sheet
+const url = "https://docs.google.com/spreadsheets/d/1y_lLPQUS1jfK-lxiUmiMEsdAC2dXjK9T/edit?gid=310771952#gid=310771952";
+
+
+
+// Column headers to display
+const requiredHeaders = [
+  //"S.No",
+  "Name",
+  "SPORTS CIRCLE(2)",
+  "MEN-METAL-MADNESS(3)",
+  "EVENT (4)",const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
+
+// Column headers to display
 const requiredHeaders = [
   "Name",
   "SPORTS CIRCLE(2)",
@@ -117,6 +129,7 @@ const requiredHeaders = [
 fetch(url)
 .then(res => res.text())
 .then(rep => {
+
   const json = JSON.parse(rep.substring(47).slice(0, -2));
 
   const allCols = json.table.cols;
@@ -124,29 +137,34 @@ fetch(url)
 
   // Find column indexes by header names
   const selectedIndexes = requiredHeaders
-    .map(header => allCols.findIndex(c => (c.label || "").trim() === header))
+    .map(header =>
+      allCols.findIndex(c => (c.label || "").trim() === header)
+    )
     .filter(index => index !== -1);
 
-  // Selected columns only
   const cols = selectedIndexes.map(i => allCols[i]);
 
-  // Find Total column in original sheet
-  let totalColIndex = allCols.findIndex(c =>
+  // Find Total column
+  const totalColIndex = allCols.findIndex(c =>
     (c.label || "").toLowerCase().trim() === "total"
   );
 
   let tableRows = [];
 
   rows.forEach(r => {
+
     let rowArr = [];
     let totalValue = 0;
 
     if (totalColIndex !== -1) {
       let tCell = r.c[totalColIndex];
-      totalValue = parseFloat(tCell ? (tCell.v || tCell.f) : 0) || 0;
+
+      totalValue = parseFloat(
+        tCell ? (tCell.v || tCell.f) : 0
+      ) || 0;
     }
 
-    // Read only selected columns
+    // Read selected columns
     selectedIndexes.forEach(i => {
       let cell = r.c[i];
       let value = cell ? (cell.f || cell.v || "") : "";
@@ -159,14 +177,19 @@ fetch(url)
     });
   });
 
-  // Sort high to low
+  // Sort highest TOTAL to lowest
   tableRows.sort((a, b) => b.total - a.total);
 
-  // Header (add S.No column at the start)
-  let headHTML = "<tr><th>S.No</th>";
+  // Header
+  let headHTML = "<tr>";
+
+  // Rank column
+  headHTML += `<th>RANK</th>`;
+
   cols.forEach(col => {
     headHTML += `<th>${col.label || ""}</th>`;
   });
+
   headHTML += "</tr>";
 
   document.getElementById("tableHead").innerHTML = headHTML;
@@ -175,15 +198,22 @@ fetch(url)
   let bodyHTML = "";
 
   tableRows.forEach((row, index) => {
+
     let rowClass = "";
 
-    if (row.total === 0) rowClass = "red";
-    else if (row.total >= 40) rowClass = "green";
-    else if (row.total >= 30) rowClass = "yellow";
+    if (row.total === 0) {
+      rowClass = "red";
+    } 
+    else if (row.total >= 40) {
+      rowClass = "green";
+    } 
+    else if (row.total >= 30) {
+      rowClass = "yellow";
+    }
 
     bodyHTML += `<tr class="${rowClass}">`;
 
-    // Add serial number
+    // Automatically generated rank
     bodyHTML += `<td>${index + 1}</td>`;
 
     row.data.forEach(val => {
@@ -194,17 +224,26 @@ fetch(url)
   });
 
   document.getElementById("sheetData").innerHTML = bodyHTML;
+
 });
 
 // Search filter
 document.getElementById("searchInput").addEventListener("keyup", function() {
-  let filter = this.value.toLowerCase();
-  document.querySelectorAll("#sheetData tr").forEach(row => {
-    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
-  });
-});
-</script>
 
+  let filter = this.value.toLowerCase();
+
+  document.querySelectorAll("#sheetData tr").forEach(row => {
+
+    row.style.display =
+      row.innerText.toLowerCase().includes(filter)
+        ? ""
+        : "none";
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
