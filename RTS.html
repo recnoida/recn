@@ -1,10 +1,8 @@
+<script>
 const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
 
-
-
-// Column headers to display
+// Column headers to display (we’ll add S.No dynamically)
 const requiredHeaders = [
-  //"S.No",
   "Name",
   "SPORTS CIRCLE(2)",
   "MEN-METAL-MADNESS(3)",
@@ -18,7 +16,6 @@ const requiredHeaders = [
 fetch(url)
 .then(res => res.text())
 .then(rep => {
-
   const json = JSON.parse(rep.substring(47).slice(0, -2));
 
   const allCols = json.table.cols;
@@ -40,7 +37,6 @@ fetch(url)
   let tableRows = [];
 
   rows.forEach(r => {
-
     let rowArr = [];
     let totalValue = 0;
 
@@ -65,8 +61,8 @@ fetch(url)
   // Sort high to low
   tableRows.sort((a, b) => b.total - a.total);
 
-  // Header
-  let headHTML = "<tr>";
+  // Header (add S.No column at the start)
+  let headHTML = "<tr><th>S.No</th>";
   cols.forEach(col => {
     headHTML += `<th>${col.label || ""}</th>`;
   });
@@ -77,8 +73,7 @@ fetch(url)
   // Rows
   let bodyHTML = "";
 
-  tableRows.forEach(row => {
-
+  tableRows.forEach((row, index) => {
     let rowClass = "";
 
     if (row.total === 0) rowClass = "red";
@@ -86,6 +81,9 @@ fetch(url)
     else if (row.total >= 30) rowClass = "yellow";
 
     bodyHTML += `<tr class="${rowClass}">`;
+
+    // Add serial number
+    bodyHTML += `<td>${index + 1}</td>`;
 
     row.data.forEach(val => {
       bodyHTML += `<td>${val}</td>`;
@@ -95,7 +93,6 @@ fetch(url)
   });
 
   document.getElementById("sheetData").innerHTML = bodyHTML;
-
 });
 
 // Search filter
@@ -105,5 +102,4 @@ document.getElementById("searchInput").addEventListener("keyup", function() {
     row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
   });
 });
-
 </script>
