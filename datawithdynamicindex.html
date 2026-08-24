@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    margin: 0;
+  }
+
+  .container {
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  h2 { margin-bottom: 10px; }
+
+  .controls { margin-bottom: 10px; }
+
+  input {
+    padding: 6px;
+    width: 200px;
+    max-width: 100%;
+  }
+
+  /* Table wrapper */
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    min-width: 900px;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #444;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  /* ✅ Header font reduced */
+  th {
+    background: #333;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    font-size: 12px;
+  }
+
+  tr:nth-child(even) { background: #222; }
+  tr:nth-child(odd) { background: #1a1a1a; }
+  tr:hover { background: #444; }
+
+  .green { background: #198754 !important; }
+  .yellow { background: #ffc107 !important; color: black; }
+  .red { background: #dc3545 !important; }
+
+  /* 📱 Mobile */
+  @media (max-width: 768px) {
+    .container { padding: 10px; }
+
+    th, td {
+      padding: 6px;
+      font-size: 12px;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>RECN RTS 2026</h2>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search...">
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead id="tableHead"></thead>
+      <tbody id="sheetData"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+const url = "https://docs.google.com/spreadsheets/d/18ty35FnXzOq0_W0a4Z3MXP3Dy729Tfa2/gviz/tq?tqx=out:json&gid=310771952";
+
+// Column headers to display (we’ll add S.No dynamically)
+const requiredHeaders = [
+  "Name",
+  "RECN ONE-UP (1)",
+  "SPORTS CIRCLE(2)",
+  "EVENT (4)",
+  "BREAKFAST RIDE (5)",
+  "BROTHERHOOD NIGHT (7)",
+  "EXPEDITION",
+  "TOTAL"
+];
+
+fetch(url)
+.then(res => res.text())
+.then(rep => {
+  const json = JSON.parse(rep.substring(47).slice(0, -2));
+
+  const allCols = json.table.cols;
+  const rows = json.table.rows;
+
+  // Find column indexes by header names
+  const selectedIndexes = requiredHeaders
+    .map(header => allCols.findIndex(c => (c.label || "").trim() === header))
+    .filter(index => index !== -1);
+
+  // Selected columns only
+  const cols = selectedIndexes.map(i => allCols[i]);
+
+  // Find Total column in original sheet
+  let totalColIndex = allCols.findIndex(c =>
+    (c.label || "").toLowerCase().trim() === "total"
+  );
+
+  let tableRows = [];
+
+  rows.forEach(r => {
+    let rowArr = [];
+    let totalValue = 0;
+
+    if (totalColIndex !== -1) {
+      let tCell = r.c[totalColIndex];
+      totalValue = parseFloat(tCell ? (tCell.v || tCell.f) : 0) || 0;
+    }
+
+    // Read only selected columns
+    selectedIndexes.forEach(i => {
+      let cell = r.c[i];
+      let value = cell ? (cell.f || cell.v || "") : "";
+      rowArr.push(value);
+    });
+
+    tableRows.push({
+      data: rowArr,
+      total: totalValue
+    });
+  });
+
+  // Sort high to low
+  tableRows.sort((a, b) => b.total - a.total);
+
+  // Header (add S.No column at the start)
+  let headHTML = "<tr><th>S.No</th>";
+  cols.forEach(col => {
+    headHTML += `<th>${col.label || ""}</th>`;
+  });
+  headHTML += "</tr>";
+
+  document.getElementById("tableHead").innerHTML = headHTML;
+
+  // Rows
+  let bodyHTML = "";
+
+  tableRows.forEach((row, index) => {
+    let rowClass = "";
+
+    if (row.total === 0) rowClass = "red";
+    else if (row.total >= 40) rowClass = "green";
+    else if (row.total >= 30) rowClass = "yellow";
+
+    bodyHTML += `<tr class="${rowClass}">`;
+
+    // Add serial number
+    bodyHTML += `<td>${index + 1}</td>`;
+
+    row.data.forEach(val => {
+      bodyHTML += `<td>${val}</td>`;
+    });
+
+    bodyHTML += "</tr>";
+  });
+
+  document.getElementById("sheetData").innerHTML = bodyHTML;
+});
+
+// Search filter
+document.getElementById("searchInput").addEventListener("keyup", function() {
+  let filter = this.value.toLowerCase();
+  document.querySelectorAll("#sheetData tr").forEach(row => {
+    row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
